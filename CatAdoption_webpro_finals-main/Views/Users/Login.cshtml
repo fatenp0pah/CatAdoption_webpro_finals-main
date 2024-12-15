@@ -1,0 +1,141 @@
+@{
+    ViewData["Title"] = "Login";
+    ViewData["HideNavbar"] = true; // Ensure navbar is hidden
+    ViewData["HideFooter"] = true;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Cat Adoption</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F9E4D4; /* Soft pastel peach background */
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFC0CB; /* Light pink */
+            font-size: 3rem;
+            margin-top: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 400px;
+            background-color: #ffffff; /* White background for form */
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.1rem;
+            color: #FFB6C1; /* Light pink */
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #FFB6C1; /* Light pink border */
+            padding: 10px;
+            background-color: #F8E6E6; /* Light pastel background */
+        }
+
+        .form-control:focus {
+            border-color: #FFC0CB; /* Light pink border when focused */
+            box-shadow: 0 0 8px rgba(255, 192, 203, 0.6);
+        }
+
+        .btn-primary {
+            background-color: #FFC0CB; /* Light pink button */
+            border-color: #FFC0CB;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            padding: 10px 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #FF69B4; /* Darker pink on hover */
+            border-color: #FF69B4;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #FFB6C1; /* Light pink */
+        }
+
+        a {
+            color: #FFC0CB;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #FF69B4;
+        }
+
+        .paw-print {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 4rem;
+            color: #FFB6C1;
+            opacity: 0.3;
+            animation: paw 2s ease-in-out infinite;
+        }
+
+    
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Login</h1>
+
+        <!-- Display popup message if there's an error or success -->
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <script>
+                alert('@TempData["ErrorMessage"]');
+            </script>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                alert('@TempData["SuccessMessage"]');
+            </script>
+        }
+
+        <form method="post" action="/Users/Login">
+            <div class="form-group">
+                <label for="Username">Username</label>
+                <input type="text" name="Username" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" name="Password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="/Users/Register">Register here</a>.</p>
+    </div>
+
+    <!-- Paw print animation -->
+    <div class="paw-print">&#128062;</div>
+
+</body>
+</html>

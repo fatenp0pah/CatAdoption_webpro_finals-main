@@ -1,0 +1,19 @@
+@model CatAdoption.Models.Adopter
+
+@{
+    ViewData["Title"] = "Delete Adopter";
+}
+
+<h2>Are you sure you want to delete this adopter?</h2>
+
+<div>
+    <strong>Username:</strong> @Model.username
+    <br />
+    <strong>Cat Name:</strong> @Model.catname
+</div>
+
+<form method="post" asp-action="DeleteAdopter" asp-route-id="@Model.Id">
+    @Html.AntiForgeryToken() <!-- Add CSRF token for security -->
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="@Url.Action("Index", "Adopter")" class="btn btn-secondary">Cancel</a>
+</form>

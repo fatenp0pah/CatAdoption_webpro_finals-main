@@ -1,0 +1,89 @@
+@model CatAdoption.Models.Adopter
+
+@{
+    ViewData["Title"] = "Add New Adopter";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Cat Adoption</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://i.pinimg.com/1200x/ce/be/d4/cebed41a673211a34b753455fb6949d6.jpg') no-repeat center center fixed; /* Replace with your image URL */
+            background-size: cover; /* Ensures the image covers the entire background */
+            font-family: 'Poppins', sans-serif; /* Retains your chosen font style */
+            color: #333;
+        }
+
+        .form-title {
+            text-align: center;
+            color: #c67683; /* Light pink */
+            font-size: 2.5rem;
+            margin-top: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .adopter-form {
+            max-width: 500px;
+            margin: 50px auto; /* Center the form on the page */
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group label {
+            font-size: 1.1rem;
+            color: #b24a5c; /* Light pink for labels */
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #FFC0CB; /* Light pink border */
+            padding: 10px;
+            background-color: #f6f0f1; /* Light pastel pink background */
+        }
+
+        .form-control:focus {
+            border-color: #c67683; /* Light pink border on focus */
+            box-shadow: 0 0 8px rgba(255, 192, 203, 0.6);
+        }
+
+        .btn-submit {
+            background-color: #FFC0CB; /* Light pink button */
+            border: none;
+            color: #050001;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            padding: 10px 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #FF69B4; /* Darker pink on hover */
+        }
+    </style>
+</head>
+<body>
+    <h2 class="form-title">Create Adopter</h2>
+
+    <form method="post" class="adopter-form">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" asp-for="username" required />
+        </div>
+
+        <div class="form-group">
+            <label for="catname">Cat Name</label>
+            <input type="text" class="form-control" id="catname" name="catname" asp-for="catname" required />
+        </div>
+
+        <button type="submit" class="btn btn-submit">Create</button>
+    </form>
+</body>
+</html>

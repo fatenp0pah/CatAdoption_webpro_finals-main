@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "My Adoption Requests";
+}
+
+<h1>My Adoption Requests</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Request ID</th>
+            <th>Cat Name</th>
+            <th>Status</th>
+            <th>Requested On</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in ViewBag.Requests)
+        {
+            <tr>
+                <td>@request.Id</td>
+                <td>@request.CatName</td>
+                <td>
+                    @if (request.RequestStatus == "Pending")
+                    {
+                        <span class="badge badge-warning">Pending</span>
+                    }
+                    else if (request.RequestStatus == "Approved")
+                    {
+                        <span class="badge badge-success">Approved</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">Rejected</span>
+                    }
+                </td>
+                <td>@request.CreatedAt.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>

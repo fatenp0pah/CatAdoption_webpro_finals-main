@@ -1,0 +1,38 @@
+@model CatAdoption.Models.Adoption
+
+@{
+    ViewData["Title"] = "Create Adoption";
+}
+
+<h1>Create Adoption</h1>
+
+@using (Html.BeginForm("Create", "Adoptions", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="CatId">Select Cat</label>
+        <select id="CatId" name="CatId" class="form-control" required>
+            <option value="">-- Select a Cat --</option>
+            @foreach (var cat in ViewBag.Cats)
+            {
+                <option value="@cat.Id">@cat.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="UserId">Select User</label>
+        <select id="UserId" name="UserId" class="form-control" required>
+            <option value="">-- Select a User --</option>
+            @foreach (var user in ViewBag.Users)
+            {
+                <option value="@user.Id">@user.Username</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Create Adoption</button>
+}
+
+<a href="@Url.Action("Dashboard", "Admin")" class="btn btn-secondary mt-3">Back to Dashboard</a>

@@ -1,0 +1,89 @@
+@model CatAdoption.Models.Adopter
+
+@{
+    ViewData["Title"] = "Edit Adopter";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Cat Adoption</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://i.pinimg.com/736x/2b/f2/d9/2bf2d90db62a9f243e101e3de0343070.jpg') no-repeat center center fixed; /* Replace with your image URL */
+            background-size: cover; /* Ensures the image covers the entire background */
+            font-family: 'Poppins', sans-serif; /* Retains your chosen font style */
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            color: #79c79e; /* Soft green */
+            font-size: 2.5rem;
+            margin-top: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            max-width: 500px;
+            margin: 50px auto; /* Center the form on the page */
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group label {
+            font-size: 1.1rem;
+            color: #79c79e; /* Soft green for labels */
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #79c79e; /* Green border */
+            padding: 10px;
+            background-color: #eaf6ed; /* Light pastel green background */
+        }
+
+        .form-control:focus {
+            border-color: #5fb882; /* Brighter green on focus */
+            box-shadow: 0 0 8px rgba(95, 184, 130, 0.6);
+        }
+
+        .btn-primary {
+            background-color: #79c79e; /* Soft green button */
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            padding: 10px 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #5fb882; /* Brighter green on hover */
+        }
+    </style>
+</head>
+<body>
+    <h2>Edit Adopter</h2>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" asp-for="username" required />
+        </div>
+
+        <div class="form-group">
+            <label for="catname">Cat Name</label>
+            <input type="text" class="form-control" id="catname" name="catname" asp-for="catname" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</body>
+</html>

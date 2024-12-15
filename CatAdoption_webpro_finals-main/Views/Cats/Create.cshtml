@@ -1,0 +1,150 @@
+@model CatAdoption.Models.Cat
+
+@{
+    ViewData["Title"] = "Add New Cat";
+}
+
+<h1 class="form-title">@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post" class="cat-form">
+    <div class="form-group">
+        <label asp-for="Name" class="form-label">Cat Name</label>
+        <input asp-for="Name" class="form-control" placeholder="Enter the cat's name" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Breed" class="form-label">Breed</label>
+        <input asp-for="Breed" class="form-control" placeholder="Enter the cat's breed" required />
+        <span asp-validation-for="Breed" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Age" class="form-label">Age</label>
+        <input asp-for="Age" class="form-control" placeholder="Enter the cat's age in years" type="number" min="0" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control" placeholder="Enter a short description of the cat"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageUrl" class="form-label">Image URL</label>
+        <input asp-for="ImageUrl" class="form-control" placeholder="Enter the image URL" type="url" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group checkbox-group">
+        <label asp-for="AvailableForAdoption" class="form-label">Available for Adoption</label>
+        <input type="hidden" name="AvailableForAdoption" value="false" />
+        <input asp-for="AvailableForAdoption" type="checkbox" />
+        <span asp-validation-for="AvailableForAdoption" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Cat</button>
+    <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-secondary">Back to Cat List</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<!-- Add custom CSS for styling -->
+<style>
+    body {
+        background-image: url('https://i.pinimg.com/736x/25/c3/07/25c30777531f346090d70a277a7b9f91.jpg'); /* Replace with your actual image URL */
+        background-size: cover; /* Make the image cover the entire page */
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Makes the background fixed during scrolling */
+        background-position: center;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .form-title {
+        text-align: center;
+        color: #ffffff; /* White text for contrast */
+        font-size: 2rem;
+        margin: 100px 0 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for readability */
+    }
+
+    .cat-form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-label {
+        display: block;
+        font-size: 1rem;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 2px solid #95a77c;
+        padding: 10px;
+        font-size: 1rem;
+        width: 100%;
+        background-color: #f8f8f8;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #e85c84;
+        box-shadow: 0 0 8px rgba(232, 92, 132, 0.6);
+    }
+
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 20px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background-color: #e85c84;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #ffffff;
+        color: #e85c84;
+        border-color: #e85c84;
+    }
+
+    .btn-secondary {
+        background-color: white;
+        color: #95a77c;
+        border: 2px solid #95a77c;
+    }
+
+    .btn-secondary:hover {
+        background-color: #95a77c;
+        color: white;
+    }
+</style>

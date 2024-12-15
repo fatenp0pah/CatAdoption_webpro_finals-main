@@ -1,0 +1,172 @@
+@model CatAdoption.Models.Cat
+
+@{
+    ViewData["Title"] = "Edit Cat";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- Updated Styling -->
+<style>
+    body {
+        background: url('https://i.pinimg.com/1200x/85/3d/79/853d793b9cb9934aa1644f670a2c4e6f.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Poppins', sans-serif;
+        color: #444;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        color: #265b21;
+        text-align: center;
+        margin-top: 120px; /* Space from top header */
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    form {
+        background-color: rgba(255, 255, 255, 0.95); /* Light white background */
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 25px 20px;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        border: 2px solid #e85c84; /* Pink border */
+    }
+
+    .form-group label {
+        font-size: 1.1rem;
+        color: #444;
+        font-weight: 600;
+        margin-bottom: 5px;
+        display: inline-block;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 1rem;
+        border: 2px solid #c6e6c6; /* Green border */
+        border-radius: 8px;
+        width: 100%;
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        background-color: #fdfdfd;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #e85c84; /* Pink focus */
+        box-shadow: 0 0 8px rgba(232, 92, 132, 0.3);
+        outline: none;
+    }
+
+    .btn-primary {
+        background-color: #e85c84; /* Pink button */
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #d46d7e; /* Slightly darker pink on hover */
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(232, 92, 132, 0.4);
+    }
+
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #79e85c; /* Green link */
+    }
+
+    a:hover {
+        color: #67d24f; /* Darker green on hover */
+    }
+
+    .back-button-container {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .back-button-container a {
+        display: inline-block;
+        padding: 10px 20px;
+        border: 2px solid #79e85c; /* Green border */
+        border-radius: 10px;
+        background-color: white;
+        color: #79e85c;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .back-button-container a:hover {
+        background-color: #79e85c;
+        color: white;
+        box-shadow: 0 4px 10px rgba(121, 232, 92, 0.3);
+    }
+</style>
+
+<form asp-action="EditCat" method="post">
+    <input type="hidden" asp-for="Id" /> <!-- Hidden input for the cat's Id -->
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="Enter the cat's name" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Breed"></label>
+        <input asp-for="Breed" class="form-control" placeholder="Enter the cat's breed" required />
+        <span asp-validation-for="Breed" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control" placeholder="Enter the cat's age in years" type="number" min="0" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control" placeholder="Enter a short description of the cat"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageUrl"></label>
+        <input asp-for="ImageUrl" class="form-control" placeholder="Enter the image URL" type="url" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AvailableForAdoption"></label>
+        <input asp-for="AvailableForAdoption" type="checkbox" /> Available for Adoption
+        <span asp-validation-for="AvailableForAdoption" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn-primary">Save Changes</button>
+
+    <div class="back-button-container">
+        <a href="@Url.Action("Dashboard", "Admin")">Back to Cat List</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

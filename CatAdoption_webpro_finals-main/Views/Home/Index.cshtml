@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Cat Adoption</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet"> <!-- New Font -->
+    <style>
+        /* Soft Pink Modern Theme */
+       body {
+    background-color:#98a89e68 ;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    color: #4a4a4a;
+    margin: 0;
+}
+
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: url('https://i.pinimg.com/1200x/d6/78/a3/d678a3226a846d5bf23a789f9eef1e76.jpg') no-repeat center center;
+            background-size:cover;
+            padding: 80px 20px;
+            text-align: center;
+            color: #ffffff;
+            border-bottom: 2px solid #fcd4e028;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(32, 94, 55, 0.377);
+            z-index: 1;
+        }
+
+        .hero h1, .hero p, .hero a {
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero a:hover {
+            background-color: #e85c84;
+            border-color: #e85c84;
+            transform: scale(1.05);
+        }
+
+        /* Cat Cards Section */
+        .cat-cards {
+            padding: 50px 0;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            background-color: #fffffff7;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            object-fit: cover;
+            height: 250px;
+        }
+
+        .card-body {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #d35d90;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #6b3e58;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            border-radius: 20px;
+        }
+
+        .badge.bg-success {
+            background-color: #ffb6c1;
+            color: white;
+        }
+
+        .badge.bg-secondary {
+            background-color: #d3bccc;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            font-size: 1rem;
+            padding: 20px;
+            background-color: #f8d7e4;
+            color: #6b3e58;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Floating Cat Image */
+        .floating-image-container {
+            position: fixed;
+            bottom: 20px; /* Adjust to place image higher or lower */
+            right: 20px; /* Adjust to place image left or right */
+            z-index: 10;
+            display: flex;
+            flex-direction: column; /* Stack image and text vertically */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-image {
+            width: 150px; /* Adjust the size of the image */
+            z-index: 10;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .floating-image:hover {
+            opacity: 1;
+            transform: scale(1.1); /* Slight zoom effect */
+        }
+
+        /* Curved Text */
+        .curved-text {
+            position: relative;
+            top: 20px; /* Adjust this to position the text above the image */
+            font-family: 'Fredoka One', cursive; /* Apply new font */
+            font-size: 1.0rem;
+            color: #ff6b81;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to Cat Adoption</h1>
+        <p>Your journey to finding a new furry friend starts here.</p>
+        <!-- Contact button now links to WhatsApp -->
+        <a href="https://wa.me/1234567890?text=I%20would%20like%20to%20adopt%20a%20cat" 
+           class="btn btn-primary btn-lg mt-3" 
+           style="background-color: #d35d90; border-color: #d35d90;">
+            Contact to Adopt
+        </a>
+    </div>
+
+    <!-- Cat Cards Section -->
+    <div class="container cat-cards">
+        <div class="row">
+            @foreach (var cat in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="@(!string.IsNullOrEmpty(cat.ImageUrl) ? cat.ImageUrl : "https://via.placeholder.com/300")" 
+                             class="card-img-top" alt="@cat.Name">
+                        <div class="card-body">
+                            <h5 class="card-title">@cat.Name</h5>
+                            <p class="card-text">@cat.Breed</p>
+                            <p class="card-text">Age: @cat.Age</p>
+                            <p class="card-text">Description: @cat.Description</p>
+                            <span class="badge @(cat.AvailableForAdoption ? "bg-success" : "bg-secondary")">
+                                @(cat.AvailableForAdoption ? "Available" : "Adopted")
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+   <!-- Floating Image with Curved Text -->
+<div class="floating-image-container">
+    <div class="curved-text">Adopt Me!</div>
+    <!-- Make the floating image a clickable link to WhatsApp -->
+    <a href="https://wa.me/1234567890?text=I%20would%20like%20to%20adopt%20a%20cat" 
+       target="_blank">
+        <img src="https://media.tenor.com/4DiFwww6548AAAAj/kitty.gif" 
+             class="floating-image" alt="Floating Cat Image">
+    </a>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
